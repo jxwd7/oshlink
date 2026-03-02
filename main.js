@@ -12,7 +12,6 @@ const navbarHTML = `
       <ul class="nav-links" role="list">
         <li><a href="#how-it-works">How It Works</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#results">Results</a></li>
         <li><a href="#audit-form">Start Audit</a></li>
       </ul>
       <div class="nav-cta">
@@ -201,71 +200,36 @@ const servicesHTML = `
   <div class="container">
     <span class="section-eyebrow">What We Build</span>
     <h2 class="section-headline reveal" id="services-headline">We Build the Systems Your Business Runs On</h2>
-    <p class="section-sub reveal">Six core solutions, all custom-built for your operations.<br>No bloated retainers, no cookie-cutter installs.</p>
-    <p class="flip-hint">Tap a card to see details</p>
-    <div class="services-grid" role="list">
-      ${services.map((s, i) => `
-        <div class="flip-card reveal" style="transition-delay:${i * 0.07}s" role="listitem" tabindex="0" aria-label="${s.front}" aria-expanded="false">
-          <div class="flip-card-inner">
-            <div class="flip-front" aria-hidden="false">
-              <div class="flip-front-glow" aria-hidden="true"></div>
-              <div class="flip-front-content">
-                <span class="service-category">${s.cat}</span>
-                <h3>${s.front}</h3>
-              </div>
-            </div>
-            <div class="flip-back" aria-hidden="true">
-              <ul>
-                ${s.bullets.map(b => `<li>${b}</li>`).join('')}
-              </ul>
-            </div>
+    <p class="section-sub reveal" style="margin-bottom:2rem;">Six core solutions, all custom-built for your operations.<br>No bloated retainers, no cookie-cutter installs.</p>
+    
+    <div class="services-showcase reveal">
+      <div class="services-list" role="tablist" aria-orientation="vertical">
+        ${services.map((s, i) => `
+          <button class="service-tab ${i === 0 ? 'active' : ''}" id="tab-${i}" role="tab" aria-selected="${i === 0 ? 'true' : 'false'}" aria-controls="panel-${i}" onclick="window.activateService(${i})">
+            <span class="service-tab-num">0${i + 1}</span>
+            <span class="service-tab-title">${s.front}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div class="services-display">
+        ${services.map((s, i) => `
+          <div class="service-panel ${i === 0 ? 'active' : ''}" id="panel-${i}" role="tabpanel" aria-labelledby="tab-${i}" ${i === 0 ? '' : 'hidden'}>
+            <div class="panel-glow"></div>
+            <span class="service-category">${s.cat}</span>
+            <h3>${s.front}</h3>
+            <ul>
+              ${s.bullets.map(b => `
+                <li>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:12px; color:var(--accent); flex-shrink:0;">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  ${b}
+                </li>
+              `).join('')}
+            </ul>
           </div>
-        </div>
-      `).join('')}
-    </div>
-  </div>
-</section>
-`;
-
-// ---- Social Proof HTML ----
-const results = [
-  {
-    type: 'E-commerce Operations',
-    quote: '"We had two people doing nothing but processing orders and chasing suppliers all day. Oshlink automated the whole pipeline in under three weeks. Those two staff now run our partnerships team."',
-    attr: 'Operations Director, Sydney-based retailer',
-    metric: '40 hrs/week reclaimed'
-  },
-  {
-    type: 'Professional Services Firm',
-    quote: '"Our voice agent handles 80% of inbound enquiries now. We haven\'t missed a lead since go-live and our close rate went up because we\'re actually responding fast."',
-    attr: 'Managing Director, Brisbane consulting firm',
-    metric: '3× faster lead response time'
-  },
-  {
-    type: 'Health & Wellness Business',
-    quote: '"The onboarding automation alone saved us roughly $4,000 a month in admin time. It was running in 14 days."',
-    attr: 'Founder, multi-location wellness studio',
-    metric: '$4k/month saved in admin costs'
-  }
-];
-
-const socialProofHTML = `
-<section id="results" class="section" aria-labelledby="results-headline">
-  <div class="container">
-    <span class="section-eyebrow">Client Results</span>
-    <h2 class="section-headline reveal" id="results-headline">Real Results, Not Marketing Numbers</h2>
-    <div class="results-grid">
-      ${results.map((r, i) => `
-        <article class="result-card reveal" style="transition-delay:${i * 0.12}s" aria-label="Client result from ${r.type}">
-          <span class="result-client-type">${r.type}</span>
-          <blockquote class="result-quote">${r.quote}</blockquote>
-          <cite class="result-attribution">${r.attr}</cite>
-          <div class="result-metric">
-            <span class="metric-value">↑</span>
-            <span class="metric-label">${r.metric}</span>
-          </div>
-        </article>
-      `).join('')}
+        `).join('')}
+      </div>
     </div>
   </div>
 </section>
@@ -495,7 +459,6 @@ const footerHTML = `
         <h4>Company</h4>
         <ul>
           <li><a href="#how-it-works">How It Works</a></li>
-          <li><a href="#results">Case Studies</a></li>
           <li><a href="#audit-form">Free Audit</a></li>
           <li><a href="#">About Oshlink</a></li>
         </ul>
@@ -568,7 +531,6 @@ app.innerHTML = [
   tickerHTML,
   howItWorksHTML,
   servicesHTML,
-  socialProofHTML,
   roiHTML,
   auditFormHTML,
   faqHTML,
@@ -610,26 +572,21 @@ setTimeout(() => {
 }, 100);
 
 // ============================================================
-// SERVICES FLIP CARDS (touch support)
+// SERVICES SHOWCASE (Tabs)
 // ============================================================
-const flipCards = document.querySelectorAll('.flip-card');
-flipCards.forEach(card => {
-  // Keyboard support
-  card.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      card.classList.toggle('flipped');
-      card.setAttribute('aria-expanded', card.classList.contains('flipped'));
-    }
+window.activateService = function (index) {
+  document.querySelectorAll('.service-tab').forEach((tab, i) => {
+    const isActive = i === index;
+    tab.classList.toggle('active', isActive);
+    tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
   });
-  // Touch / click (only activate on touch devices - desktop uses CSS hover)
-  card.addEventListener('click', () => {
-    if (window.matchMedia('(hover: none)').matches) {
-      card.classList.toggle('flipped');
-      card.setAttribute('aria-expanded', card.classList.contains('flipped'));
-    }
+  document.querySelectorAll('.service-panel').forEach((panel, i) => {
+    const isActive = i === index;
+    panel.classList.toggle('active', isActive);
+    if (isActive) panel.removeAttribute('hidden');
+    else panel.setAttribute('hidden', '');
   });
-});
+};
 
 // ============================================================
 // ROI CALCULATOR
