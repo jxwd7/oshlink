@@ -1,0 +1,128 @@
+# Oshlink Website — Clone of AutoSynTech.com
+
+Build a premium AI Automation Agency website for **Oshlink**, closely mirroring the structure and design of autosyntech.com but rebranded with Oshlink's identity.
+
+## Brand Identity
+
+| Element | Value |
+|---------|-------|
+| Company Name | **Oshlink** |
+| Primary Dark | `#1C2321` |
+| Accent Color | `#984447` |
+| Tagline | *Building the automated workforce of tomorrow.* |
+| Contact Email | `info@oshlink.com` |
+
+## Reference Screenshots
+
+````carousel
+![Hero Section](file:///C:/Users/llsadmin/.gemini/antigravity/brain/4ed5de49-40a2-4a06-bf53-aadb181b1ac1/hero_section_1772450167530.png)
+<!-- slide -->
+![Stats & Calculator](file:///C:/Users/llsadmin/.gemini/antigravity/brain/4ed5de49-40a2-4a06-bf53-aadb181b1ac1/stats_and_calculator_1772450185555.png)
+<!-- slide -->
+![Services Section](file:///C:/Users/llsadmin/.gemini/antigravity/brain/4ed5de49-40a2-4a06-bf53-aadb181b1ac1/services_section_1772450213492.png)
+<!-- slide -->
+![Audit Form](file:///C:/Users/llsadmin/.gemini/antigravity/brain/4ed5de49-40a2-4a06-bf53-aadb181b1ac1/audit_form_section_1772450230172.png)
+````
+
+## Proposed Changes
+
+### Project Setup
+
+#### [NEW] Vite project scaffold
+
+Initialize a Vite vanilla JS project in `c:\Users\llsadmin\OneDrive\Desktop\oshlink\` with the following structure:
+
+```
+oshlink/
+├── index.html
+├── style.css
+├── main.js
+├── sections/
+│   ├── hero.js
+│   ├── stats.js
+│   ├── calculator.js
+│   ├── services.js
+│   ├── audit.js
+│   └── footer.js
+├── components/
+│   ├── navbar.js
+│   └── logo-ticker.js
+└── public/
+    └── assets/
+```
+
+---
+
+### Sections to Build (in order)
+
+#### 1. Hero Section
+- Large headline: **"YOUR TEAM WAS HIRED TO THINK."** + sub: **"Let AI Do The Rest."**
+- Body paragraph about custom AI infrastructures
+- Pill tags: AI Automation, Intelligent Workflows, Voice Agents
+- Two CTAs: "Start Your AI Audit" (primary) + "Talk to Our Voice Agent" (secondary)
+- Animated SVG background paths
+- Fade-in text animations
+
+#### 2. Trusted By Logo Ticker
+- Infinitely scrolling horizontal logo strip
+- Placeholder company logos (generated or SVG placeholders)
+
+#### 3. Stats Section
+- Three large animated counters: 500+, $2M+, 99.6%
+- Descriptive labels beneath each
+
+#### 4. ROI Calculator
+- Headline: "The Real Cost of Manual Work"
+- Three interactive range sliders (Employees, Hours/Week, Hourly Wage)
+- Real-time savings calculation display
+- Results card with Year 1 Savings, Cost Reduction %, Annual Cost, Timeline
+
+#### 5. Services Section ("What We Build For You")
+- 6 service cards in a staggered/hexagonal grid layout
+- Cards flip on hover to reveal detailed descriptions
+- Services: Client Acquisition, Voice Infrastructure, Workflow Automation, CRM Management, Customer Support, Document Processing
+
+#### 6. Efficiency Audit Form
+- Multi-field form: Company Name, Revenue, Team Size, Growth, Industry
+- Styled dark card with accent-colored inputs and CTA
+- "START AUDIT" button
+
+#### 7. Footer
+- Newsletter signup with email input
+- Three-column link grid (Services, Resources, Contact)
+- Social media icons (LinkedIn, Twitter, Facebook, Instagram)
+- Copyright line
+
+#### 8. Floating Bottom Navbar
+- Glassmorphism pill bar fixed at bottom
+- Links: Home icon, Services, Start Audit (CTA)
+
+---
+
+### Design System (`style.css`)
+
+- **Colors**: `#1C2321` (dark bg), `#984447` (accent replacing gold), white text
+- **Typography**: Google Font "Inter" or "Outfit" for modern feel
+- **Effects**: Glassmorphism nav, card hover flips, smooth scrolling, gradient overlays
+- **Animations**: CSS keyframes for fade-ins, counter animations in JS, infinite ticker scroll
+
+---
+
+## Verification Plan
+
+### Browser Visual Review
+1. Run `npm run dev` in `c:\Users\llsadmin\OneDrive\Desktop\oshlink\`
+2. Open the local dev URL in the browser
+3. Scroll through all sections and verify:
+   - Hero text and CTAs render correctly
+   - Logo ticker scrolls infinitely
+   - Stats counters animate on scroll
+   - ROI Calculator sliders update values in real-time
+   - Service cards flip on hover
+   - Audit form fields and button are styled correctly
+   - Footer layout is complete
+   - Floating navbar is visible and functional
+4. Resize browser to test responsive behavior at mobile/tablet breakpoints
+
+> [!NOTE]
+> This is a front-end only website build. No backend or API integrations are needed at this stage. The audit form will be a visual placeholder.
