@@ -1,66 +1,72 @@
-# Oshlink Landing Page
+# OSHLink
 
-Premium AI Automation Agency landing page for **Oshlink**. Built with Vite + Vanilla JS.
+**Conversion-focused website for an AI automation agency.**
 
-## Getting Started
+OSHLink is a Vite-powered static site that positions an AI automation agency around business outcomes: client acquisition, workflow automation, voice infrastructure, CRM sync, document processing, customer support, and measurable time savings.
+
+## Product Idea
+
+The site is built as a client-facing acquisition surface for AI automation services. Instead of presenting AI as abstract technology, it guides visitors through:
+
+- What automation can remove from daily operations.
+- How an agency would audit and prioritize workflows.
+- What services are available.
+- What return on time savings could look like.
+- How to request an automation audit.
+
+## Features
+
+| Section | Purpose |
+| --- | --- |
+| Hero | Establishes OSHLink as an AI automation agency |
+| Logo ticker | Adds market-style credibility and motion |
+| How it works | Explains the audit-to-implementation process |
+| Services | Covers lead generation, voice agents, workflow automation, CRM/data sync, support, and documents |
+| Social proof | Presents credibility signals and testimonial-style copy |
+| ROI calculator | Estimates savings from team size, hours, and hourly rate |
+| Audit form | Two-step lead capture form with validation and success state |
+| FAQ | Handles common objections through an accordion |
+| Mobile nav | Adds quick access for smaller screens |
+
+## Tech Stack
+
+- Vite
+- Vanilla JavaScript
+- CSS with responsive layout, motion, and reduced-motion handling
+
+## Repository Map
+
+```text
+index.html        Site entry
+src/main.js       Section rendering, form behavior, ROI calculator, FAQ logic
+src/styles.css    Visual system, layout, responsive behavior, motion
+package.json      Vite scripts
+```
+
+## Run Locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) in your browser.
-
-## Build for Production
+Build for production:
 
 ```bash
 npm run build
 ```
 
-Output goes to the `dist/` folder. Preview the production build:
+## Brand Direction
 
-```bash
-npm run preview
-```
+The site is intentionally direct and operational. It avoids vague AI language and pushes toward audit, implementation, and measurable savings. This makes it useful as a reference for AI automation positioning, landing-page conversion, and business-facing product copy.
 
-## Deployment
+## Next Steps
 
-This is a static site — deploy the `dist/` folder to any of the following:
+- Connect the audit form to a CRM or email workflow.
+- Add service-specific landing pages.
+- Add real client case studies and before/after workflow examples.
+- Add analytics events for calculator usage and form drop-off.
 
-| Platform | How |
-|----------|-----|
-| **Vercel** | `npx vercel` or drag-and-drop `dist/` on vercel.com |
-| **Netlify** | Drag-and-drop `dist/` on netlify.com/drop |
-| **Cloudflare Pages** | Connect your repo, set build command `npm run build`, output dir `dist` |
+## Maintainer
 
-## Project Structure
-
-```
-oshlink/
-├── index.html      # Entry point + meta tags + OG tags
-├── main.js         # All sections & interactive logic
-├── style.css       # Design system, tokens, all component styles
-├── vite.config.js  # Vite config
-└── package.json
-```
-
-## Sections
-
-1. **Navbar** – Sticky glassmorphism nav
-2. **Hero** – Animated SVG background, pills, dual CTA
-3. **Logo Ticker** – Infinite scroll strip
-4. **How It Works** – 3-step process cards
-5. **Services** – 6 flip-cards (hover desktop / tap mobile)
-6. **Social Proof** – 3 client result cards with metric callouts
-7. **ROI Calculator** – 3 sliders updating 3 result values reactively
-8. **Audit Form** – 2-step form with step indicators
-9. **FAQ** – Accordion (one open at a time)
-10. **Footer** – Newsletter, 3-column links, social icons
-11. **Floating Nav** – Mobile-only glassmorphism pill bar
-
-## Accessibility
-
-- All interactive elements have visible `:focus-visible` states
-- `prefers-reduced-motion` disables all animations
-- Semantic HTML5 throughout with `aria-*` attributes
-- FAQ and form use `aria-expanded` / `aria-controls`
+Built by [Jawwad Ahmed](https://jawwad.xyz), focused on AI automation, agent workflows, and business adoption.
